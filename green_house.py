@@ -34,6 +34,7 @@ def update_frame(label, frames, delay):
 # Create the main window using the "simplex" theme and title it "Green House"
 app = tb.Window(themename="simplex", title="Green House")
 app.geometry("800x600")
+app.iconbitmap("plant.ico")
 
 # Create a main frame to contain the widgets and pack it into the main window
 main_frame = Frame(app)
