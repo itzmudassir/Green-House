@@ -2,7 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from itertools import count, cycle
 
-def show_gif(root, file, width, height):
+def show_gif(root, file, width, height, grid_row, grid_column, padx, pady):
     im = Image.open(file)
     frames = []
     try:
@@ -17,7 +17,7 @@ def show_gif(root, file, width, height):
     except:
         delay = 100
     label = tk.Label(root, width=width, height=height)
-    label.pack()
+    label.grid(row=grid_row, column=grid_column, padx=padx, pady=pady)
     update_frame(label, frames, delay)
 
 def update_frame(label, frames, delay):
@@ -26,5 +26,5 @@ def update_frame(label, frames, delay):
         label.after(delay, update_frame, label, frames, delay)
 
 root = tk.Tk()
-show_gif(root, 'plant.gif', 40, 40)
+show_gif(root, 'fan.gif', 40, 40, 0, 0, 5, 5)
 root.mainloop()
