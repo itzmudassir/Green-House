@@ -20,7 +20,7 @@ def gif_play():
         img = ImageTk.PhotoImage(img)
         img_label.configure(image=img)
         app.update()
-        time.sleep(0.1)
+        time.sleep(0.01)
     img_label.after(0, gif_play)
     
 gif_play()
