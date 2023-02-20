@@ -1,28 +1,33 @@
 from tkinter import *
-import ttkbootstrap as tb
-from ttkbootstrap.constants import *
-import tkinter as tk
 from PIL import Image, ImageTk, ImageSequence
-import customtkinter as ct
-import time
-
+import ttkbootstrap as tb
 
 app = tb.Window(themename="simplex", title="Green House")
 app.geometry("800x480")
 app.iconbitmap("plant.ico")
 
 def gif_play():
-    img = Image.open("plant.gif")
-    img_label = Label(app)
-    img_label.pack()
-    for img in ImageSequence.Iterator(img):
-        img.resize((100, 100))
+    global img, animating
+    if animating:
+        img = next(frames)
+        img = img.resize((150, 140))
         img = ImageTk.PhotoImage(img)
         img_label.configure(image=img)
-        app.update()
-        time.sleep(0.01)
-    img_label.after(0, gif_play)
-    
+        img_label.image = img # needed to prevent garbage collection
+        app.after(20, gif_play)
+
+img = Image.open("plant.gif")
+frames = ImageSequence.Iterator(img)
+img = next(frames)
+
+img_label = tb.Label(app)
+img_label.grid(row=1, column=3)
+
+img = img.resize((150, 140))
+img = ImageTk.PhotoImage(img)
+img_label.configure(image=img)
+
+animating = True
 gif_play()
-    
+
 app.mainloop()

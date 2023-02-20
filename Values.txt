@@ -1,0 +1,20 @@
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:40
+Temperature is : 23.0 Humidity is : 80.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:43
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:45
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:46
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.56 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:49
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:51
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:53
+Temperature is : 23.0 Humidity is : 80.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:55
+Temperature is : 23.0 Humidity is : 81.00 Soil Temperature is : 23.63 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:57
+Temperature is : 23.0 Humidity is : 80.00 Soil Temperature is : 23.56 Soil Moisture is : 51 Light Intensity is : 81 
+2023-02-20 22:38:59

@@ -10,10 +10,11 @@ import serial
 from tkVideoPlayer import TkinterVideo
 import threading
 
-# Create the main window using the "simplex" tññheme and title it "Green House"
+
 app = tb.Window(themename="united", title="Green House")
 app.geometry("800x480")
 app.iconbitmap("Images\plant.ico")
+
 
 ser = serial.Serial('COM3', 9600, timeout=1)
 global modified
@@ -67,28 +68,7 @@ def read():
             
     label1.after(2000, read)
 
-def show_gif(root, file, width, height, grid_row, grid_column, padx, pady):
-    im = Image.open(file)
-    frames = []
-    try:
-        for i in count(1):
-            frames.append(ImageTk.PhotoImage(im.copy().resize((width, height))))
-            im.seek(i)
-    except EOFError:
-        pass
-    frames = cycle(frames)
-    try:
-        delay = im.info['duration']
-    except:
-        delay = 100
-    label = tk.Label(root, width=width, height=height)
-    label.grid(row=grid_row, column=grid_column, padx=padx, pady=pady)
-    update_frame(label, frames, delay)
 
-def update_frame(label, frames, delay):
-    if frames:
-        label.config(image=next(frames))
-        label.after(delay, update_frame, label, frames, delay)
 def checkbox_event_1():
     if(var1.get() == 0):
         # fan_status_Label.configure(text="Non Active")
@@ -111,6 +91,7 @@ def checkbox_event_2():
         # light_status_Label.configure(text="Activated")
         # light_status_Label.configure(fg_color="green")
         lightoff_label.configure(image=lighton)
+        
 def home():
     global main_frame
     global label_frame
@@ -137,21 +118,21 @@ def home():
 
     # Create a LabelFrame widget and give it a position within the main frame
     label_frame = tb.LabelFrame(main_frame)
-    label_frame.grid(row=0, column=0, padx = 5, pady = 2, sticky="w")
+    label_frame.grid(row=0, column=0, padx = 310, pady = 2, sticky="w", columnspan=4)
 
     # Create a Label widget and give it a "HOME" label, using a font size of 20 and bold style
     home_label = tb.Label(label_frame,
                         bootstyle="warning",
-                        text="HOME",
+                        text="Green House",
                         font=("Arial", 20, "bold")
                             )
-    home_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+    home_label.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
     #Importing the images
-    fanoff = ImageTk.PhotoImage(Image.open("Images\\fanoff.png").resize((110, 110)))
-    fanon = ImageTk.PhotoImage(Image.open("Images\\fanon.png").resize((110, 110)))
-    lightoff = ImageTk.PhotoImage(Image.open("Images\lightsoff.png").resize((110, 110)))
-    lighton = ImageTk.PhotoImage(Image.open("Images\lighton.png").resize((110, 110)))
+    fanoff = ImageTk.PhotoImage(Image.open("Images\\fanoff.png").resize((100, 100)))
+    fanon = ImageTk.PhotoImage(Image.open("Images\\fanon.png").resize((100, 100)))
+    lightoff = ImageTk.PhotoImage(Image.open("Images\lightsoff.png").resize((100, 100)))
+    lighton = ImageTk.PhotoImage(Image.open("Images\lighton.png").resize((100, 110)))
 
     # Variable to store the state of the checkbutton
     var1 = IntVar()
@@ -160,7 +141,7 @@ def home():
     # Create a Meter widget to display temperature and give it a position within the main frame
     temp_meter = tb.Meter(main_frame,
                         bootstyle="primary",
-                        interactive= False,
+                        interactive= True,
                         subtext="Temperature",
                         subtextfont=("Times", 10, "bold"),
                         textright='°C',
@@ -173,7 +154,7 @@ def home():
     # Create a Meter widget to display humidity and give it a position within the main frame
     hum_meter = tb.Meter(main_frame,
                         bootstyle="info",
-                        interactive= False,
+                        interactive= True,
                         subtext="Humidity",
                         textright='%',
                         metersize= 155,
@@ -185,7 +166,7 @@ def home():
     # Create a Meter widget to display light intensity and give it a position within the main frame
     ldr_meter = tb.Meter(main_frame,
                         bootstyle="success",
-                        interactive= False,
+                        interactive= True,
                         subtext="Light Intensity",
                         textright='%',
                         metersize= 155,
@@ -197,7 +178,7 @@ def home():
     # Create a Meter widget to display soil temperature and give it a position within the main frame
     soil_temperature_meter = tb.Meter(main_frame,
                         bootstyle="dark",
-                        interactive= False,
+                        interactive= True,
                         subtext="Soil Temperature",
                         textright='°C',
                         arcrange=180,
@@ -211,7 +192,7 @@ def home():
     # Create a Meter widget to display soil moisture and give it a position within the main frame
     soil_moisture_meter = tb.Meter(main_frame,
                         bootstyle="warning",
-                        interactive= False,
+                        interactive= True,
                         subtext="Soil Moisture",
                         textright='%',
                         metersize= 155,
@@ -256,56 +237,18 @@ def home():
 
     label1 = Label(main_frame, text=" ")
     label1.grid(row=4, column=0, padx=10, pady=10, sticky="w")
-    
-    show_gif(main_frame, 'Images\plant.gif', 150, 140, 1, 3, 5, 5)
-    
-    
-        # Play a gif image
-    
 
-    # A button to turn on/off the watering system
-    # watering_system_button = tb.Button(main_frame,
-    #                                     text="Turn On/Off Watering System",
-    #                                     bootstyle="warning"
-    #                                     )
-    # watering_system_button.grid(row=3, column=0,padx=10, pady=10, sticky="w")
 
-    # # A checkbutton to turn on/off the fan
-    # fan_checkbutton = tb.Checkbutton(main_frame,
-    #                                     text="Turn On/Off Fan",
-    #                                     bootstyle="primary-round-toggle",
-    #                                     variable=var1,
-    #                                     onvalue=1,
-    #                                     offvalue=0,
-    #                                     command=checkbox_event_1
-    #                                     )
-    # fan_checkbutton.grid(row=3, column=1, sticky="w")
-    
-    
-    # A checkbutton to turn on/off the light
-    # light_checkbutton = tb.Checkbutton(main_frame,
-    #                                     text="Turn On/Off Light",
-    #                                     bootstyle="success-round-toggle",
-    #                                     variable=var2,
-    #                                     onvalue=1,
-    #                                     offvalue=0,
-    #                                     command=checkbox_event_2
-    #                                     )
-    # light_checkbutton.grid(row=3, column=3, sticky="w")
+#Creating the Splash Screen
+frame_video=Frame(app, width=800, height=480)
+frame_video.pack(expand=True, fill="both")
+videoplayer = TkinterVideo(frame_video, scaled=True)
+videoplayer.load(r'Images\splash.mp4')
+videoplayer.pack(expand=True, fill="both")
+videoplayer.play()
 
-# Creating the Splash Screen
-# frame_video=customtkinter.CTkFrame(master=app,width=240,corner_radius=20,fg_color="white")
-# frame_video.place(x=0, y=0, width=800, height=480)
-# videoplayer = TkinterVideo(frame_video, scaled=True)
-# videoplayer.load(r'splash.mp4')
-# videoplayer.pack(expand=True, fill="both")
-# videoplayer.play()
+app.after(2000,frame_video.destroy)    # Destroying the splash screen after 3 seconds
+app.after(2000,home)
 
-# app.after(2000,frame_video.destroy)    # Destroying the splash screen after 3 seconds
-# app.after(2000,home)    
 
-# app.after(2000, read)    # Calling the read function after 3 seconds
-home()    # Calling the home function
-read()    # Calling the read function
-# main loop
 app.mainloop()
